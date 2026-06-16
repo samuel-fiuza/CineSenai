@@ -85,6 +85,45 @@ export const api = {
         }),
     },
 
+    salas: {
+        listar: () => request("/api/salas"),
+        buscarPorId: (id) => request(`/api/salas/${id}`),
+        criar: (salas) => request("/api/salas", {
+            method: "POST",
+            body: JSON.stringify(salas)
+        }),
+
+        deletar: (id) => request(`/api/salas/${id}`, {
+            method: "DELETE"
+        }),
+    },
+
+    sessoes: {
+        listarPorData: (data) => request(`/api/sessoes?data=${data}`),
+        listarPorFilme: (filmeId) => request(`/api.sessoes?filmeId=${filmeId}`),
+        buscarPorId: (id) => request(`/api/sessoes/${id}`),
+        listarPorAssentos: (id) => request(`/api/sessoes/${id}/assentos`),
+        criar: (sessao) => request(`/api/sessoes`, {
+            method: "POST",
+            body: JSON.stringify(sessao)
+        }),
+        deletar: (id) => request(`api/sessoes/${id}`, {
+            method: "DELETE"
+        }),
+    },
+
+    reserva: {
+        criar: (sessaoId, assentosIds ) => request(`/api/reservas`, {
+            method: "POST",
+            body: JSON.stringify({sessaoId, assentosIds}),
+        }),
+        listarMinhas: () => request(`/api/reservas/minhas`),
+        cancelar: (id) => request(`/api/reservas/${id}`, {
+            method: "DELETE"
+        })
+    },
+
+
     avaliacoes: {
         listar: (filmeId) => request(`/api/filmes/${filmeId}/avlaiacoes`),
         criar: (filmeId, avaliacao) => request(`/api/filmes/${filmeId}/avaliacoes`, {
@@ -112,4 +151,6 @@ export const api = {
         }),
         verificar: (filmeId) => request(`api/favoritos/verificar?filmeId=${filmeId}`),
     },
+    //os cara do nada cria tres bagulho novo, inadimissivel
+
 };
