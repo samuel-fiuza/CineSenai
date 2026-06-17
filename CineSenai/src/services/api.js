@@ -151,6 +151,21 @@ export const api = {
         }),
         verificar: (filmeId) => request(`api/favoritos/verificar?filmeId=${filmeId}`),
     },
-    //os cara do nada cria tres bagulho novo, inadimissivel
+
+    usario: {
+        buscarPerfil: () => request(`api/usuario/perfil`),
+        atualizarPErfil: (nome, email) => request(`/api/usuario/perfil`, {
+            method: "PUT",
+            body: JSON.stringify({nome, email})
+        }),
+        trocarSenha: (senhaAtual, novaSenha) => request(`/api.usuarios.senha`, {
+            method: "PATCH",
+            body: JSON.stringify({senhaAtual, novaSenha}),
+        }),
+
+        excluirConta: () => request(`/aapi/usuario/perfil`, {
+            method: "DELETE"
+        })
+    }
 
 };
